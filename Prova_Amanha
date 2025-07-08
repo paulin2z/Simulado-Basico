@@ -21,6 +21,7 @@
     }
     button {
       margin-top: 10px;
+      margin-right: 5px;
       padding: 8px 15px;
       background: #007BFF;
       color: white;
@@ -36,116 +37,100 @@
       color: red;
       font-weight: bold;
     }
+    #resultadoFinal {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 30px;
+      padding: 10px;
+    }
   </style>
 </head>
 <body>
   <h1>Simulado HTML, CSS e JavaScript</h1>
 
-  <div class="pergunta">
-    <p>1. Qual tag é usada para criar um link?</p>
-    <button onclick="verificar(1, 'a')">a) &lt;a&gt;</button>
-    <button onclick="verificar(1, 'b')">b) &lt;link&gt;</button>
-    <button onclick="verificar(1, 'c')">c) &lt;href&gt;</button>
-    <p id="resposta1"></p>
-  </div>
+  <div id="quiz"></div>
 
-  <div class="pergunta">
-    <p>2. O que o atributo alt faz na tag &lt;img&gt;?</p>
-    <button onclick="verificar(2, 'a')">a) Altera a cor da imagem</button>
-    <button onclick="verificar(2, 'b')">b) Adiciona uma borda</button>
-    <button onclick="verificar(2, 'c')">c) Descreve a imagem</button>
-    <p id="resposta2"></p>
-  </div>
-
-  <div class="pergunta">
-    <p>3. Qual a palavra-chave para declarar uma variável constante em JavaScript?</p>
-    <button onclick="verificar(3, 'a')">a) let</button>
-    <button onclick="verificar(3, 'b')">b) var</button>
-    <button onclick="verificar(3, 'c')">c) const</button>
-    <p id="resposta3"></p>
-  </div>
-
-  <div class="pergunta">
-    <p>4. Qual seletor CSS aplica estilo em todos os parágrafos?</p>
-    <button onclick="verificar(4, 'a')">a) #p</button>
-    <button onclick="verificar(4, 'b')">b) p</button>
-    <button onclick="verificar(4, 'c')">c) .p</button>
-    <p id="resposta4"></p>
-  </div>
-
-  <div class="pergunta">
-    <p>5. Qual propriedade muda a cor do texto em CSS?</p>
-    <button onclick="verificar(5, 'a')">a) background</button>
-    <button onclick="verificar(5, 'b')">b) color</button>
-    <button onclick="verificar(5, 'c')">c) font</button>
-    <p id="resposta5"></p>
-  </div>
-
-  <div class="pergunta">
-    <p>6. Qual estrutura JavaScript executa um bloco de código várias vezes?</p>
-    <button onclick="verificar(6, 'a')">a) if</button>
-    <button onclick="verificar(6, 'b')">b) loop</button>
-    <button onclick="verificar(6, 'c')">c) for</button>
-    <p id="resposta6"></p>
-  </div>
-
-  <div class="pergunta">
-    <p>7. Qual evento detecta um clique do usuário?</p>
-    <button onclick="verificar(7, 'a')">a) onchange</button>
-    <button onclick="verificar(7, 'b')">b) onload</button>
-    <button onclick="verificar(7, 'c')">c) onclick</button>
-    <p id="resposta7"></p>
-  </div>
-
-  <div class="pergunta">
-    <p>8. O que significa a sigla HTML?</p>
-    <button onclick="verificar(8, 'a')">a) HyperText Makeup Language</button>
-    <button onclick="verificar(8, 'b')">b) HyperText Markup Language</button>
-    <button onclick="verificar(8, 'c')">c) Hyperlink and Text Markup Language</button>
-    <p id="resposta8"></p>
-  </div>
-
-  <div class="pergunta">
-    <p>9. Para que serve o atributo "href" na tag &lt;a&gt;?</p>
-    <button onclick="verificar(9, 'a')">a) Definir o texto do link</button>
-    <button onclick="verificar(9, 'b')">b) Indicar o endereço do link</button>
-    <button onclick="verificar(9, 'c')">c) Alterar a cor do link</button>
-    <p id="resposta9"></p>
-  </div>
-
-  <div class="pergunta">
-    <p>10. Qual tag cria uma caixa de entrada de texto em formulários HTML?</p>
-    <button onclick="verificar(10, 'a')">a) &lt;form&gt;</button>
-    <button onclick="verificar(10, 'b')">b) &lt;input&gt;</button>
-    <button onclick="verificar(10, 'c')">c) &lt;textbox&gt;</button>
-    <p id="resposta10"></p>
-  </div>
+  <div id="resultadoFinal"></div>
+  <button onclick="reiniciarQuiz()">Reiniciar</button>
 
   <script>
-    const respostasCertas = {
-      1: 'a',
-      2: 'c',
-      3: 'c',
-      4: 'b',
-      5: 'b',
-      6: 'c',
-      7: 'c',
-      8: 'b',
-      9: 'b',
-      10: 'b'
-    };
+    const perguntas = [
+      ["Qual tag é usada para criar um link?", ["<a>", "<link>", "<href>"], 'a'],
+      ["O que o atributo alt faz na tag <img>?", ["Altera a cor da imagem", "Adiciona uma borda", "Descreve a imagem"], 'c'],
+      ["Qual a palavra-chave para declarar uma variável constante em JavaScript?", ["let", "var", "const"], 'c'],
+      ["Qual seletor CSS aplica estilo em todos os parágrafos?", ["#p", "p", ".p"], 'b'],
+      ["Qual propriedade muda a cor do texto em CSS?", ["background", "color", "font"], 'b'],
+      ["Qual estrutura JavaScript executa um bloco de código várias vezes?", ["if", "loop", "for"], 'c'],
+      ["Qual evento detecta um clique do usuário?", ["onchange", "onload", "onclick"], 'c'],
+      ["O que significa a sigla HTML?", ["HyperText Makeup Language", "HyperText Markup Language", "Hyperlink and Text Markup Language"], 'b'],
+      ["Para que serve o atributo \"href\" na tag <a>?", ["Definir o texto do link", "Indicar o endereço do link", "Alterar a cor do link"], 'b'],
+      ["Qual tag cria uma caixa de entrada de texto em formulários HTML?", ["<form>", "<input>", "<textbox>"], 'b'],
+      ["Qual propriedade CSS altera o tamanho da fonte?", ["text-size", "font-size", "size"], 'b'],
+      ["Qual método JavaScript é usado para selecionar um elemento por ID?", ["getElementByClass", "getElementById", "querySelectorAll"], 'b'],
+      ["Como se inicia um comentário em JavaScript?", ["/* comentário */", "<!-- comentário -->", "// comentário"], 'c'],
+      ["Qual é a tag usada para criar listas ordenadas?", ["<ul>", "<ol>", "<li>"], 'b'],
+      ["O que significa CSS?", ["Central Style Sheets", "Cascading Style Sheets", "Custom Style Syntax"], 'b'],
+      ["Qual é o valor padrão do atributo display em uma tag <div>?", ["inline", "flex", "block"], 'c'],
+      ["Qual desses métodos adiciona um novo elemento ao final de um array em JavaScript?", ["push()", "pop()", "shift()"], 'a'],
+      ["Qual atributo HTML define o valor inicial de um campo <input>?", ["value", "placeholder", "start"], 'a'],
+      ["Qual operador é usado para comparação estrita (valor e tipo) no JavaScript?", ["==", "===", "="], 'b'],
+      ["Qual evento JavaScript detecta quando uma tecla é pressionada?", ["keypress", "keydown", "keypush"], 'b']
+    ];
+
+    let acertos = 0;
+    let respondidas = {};
+
+    function criarQuiz() {
+      const quiz = document.getElementById('quiz');
+      quiz.innerHTML = '';
+      perguntas.forEach((p, i) => {
+        const letraCorreta = p[2];
+        const letras = ['a', 'b', 'c'];
+        const div = document.createElement('div');
+        div.className = 'pergunta';
+        div.innerHTML = `<p>${i + 1}. ${p[0]}</p>`;
+        letras.forEach((letra, j) => {
+          const botao = document.createElement('button');
+          botao.innerText = `${letra}) ${p[1][j]}`;
+          botao.onclick = () => verificar(i + 1, letra);
+          div.appendChild(botao);
+        });
+        const pResultado = document.createElement('p');
+        pResultado.id = 'resposta' + (i + 1);
+        div.appendChild(pResultado);
+        quiz.appendChild(div);
+      });
+    }
 
     function verificar(numero, resposta) {
-      const correto = respostasCertas[numero] === resposta;
+      const correta = perguntas[numero - 1][2];
       const p = document.getElementById('resposta' + numero);
-      if (correto) {
+      if (respondidas[numero]) return; // já respondeu
+      respondidas[numero] = true;
+
+      if (resposta === correta) {
         p.innerText = '✅ Resposta correta!';
         p.className = 'correto';
+        acertos++;
       } else {
         p.innerText = '❌ Resposta incorreta';
         p.className = 'incorreto';
       }
+
+      if (Object.keys(respondidas).length === perguntas.length) {
+        document.getElementById('resultadoFinal').innerText =
+          `Você acertou ${acertos} de ${perguntas.length} questões.`;
+      }
     }
+
+    function reiniciarQuiz() {
+      acertos = 0;
+      respondidas = {};
+      document.getElementById('resultadoFinal').innerText = '';
+      criarQuiz();
+    }
+
+    criarQuiz();
   </script>
 </body>
 </html>
