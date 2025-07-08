@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulado HTML, CSS e JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .pergunta {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .correto {
+      color: green;
+      font-weight: bold;
+    }
+    .incorreto {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simulado HTML, CSS e JavaScript</h1>
+
+  <div class="pergunta">
+    <p>1. Qual tag é usada para criar um link?</p>
+    <button onclick="verificar(1, 'a')">a) &lt;a&gt;</button>
+    <button onclick="verificar(1, 'b')">b) &lt;link&gt;</button>
+    <button onclick="verificar(1, 'c')">c) &lt;href&gt;</button>
+    <p id="resposta1"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>2. O que o atributo alt faz na tag &lt;img&gt;?</p>
+    <button onclick="verificar(2, 'a')">a) Altera a cor da imagem</button>
+    <button onclick="verificar(2, 'b')">b) Adiciona uma borda</button>
+    <button onclick="verificar(2, 'c')">c) Descreve a imagem</button>
+    <p id="resposta2"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>3. Qual a palavra-chave para declarar uma variável constante em JavaScript?</p>
+    <button onclick="verificar(3, 'a')">a) let</button>
+    <button onclick="verificar(3, 'b')">b) var</button>
+    <button onclick="verificar(3, 'c')">c) const</button>
+    <p id="resposta3"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>4. Qual seletor CSS aplica estilo em todos os parágrafos?</p>
+    <button onclick="verificar(4, 'a')">a) #p</button>
+    <button onclick="verificar(4, 'b')">b) p</button>
+    <button onclick="verificar(4, 'c')">c) .p</button>
+    <p id="resposta4"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>5. Qual propriedade muda a cor do texto em CSS?</p>
+    <button onclick="verificar(5, 'a')">a) background</button>
+    <button onclick="verificar(5, 'b')">b) color</button>
+    <button onclick="verificar(5, 'c')">c) font</button>
+    <p id="resposta5"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>6. Qual estrutura JavaScript executa um bloco de código várias vezes?</p>
+    <button onclick="verificar(6, 'a')">a) if</button>
+    <button onclick="verificar(6, 'b')">b) loop</button>
+    <button onclick="verificar(6, 'c')">c) for</button>
+    <p id="resposta6"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>7. Qual evento detecta um clique do usuário?</p>
+    <button onclick="verificar(7, 'a')">a) onchange</button>
+    <button onclick="verificar(7, 'b')">b) onload</button>
+    <button onclick="verificar(7, 'c')">c) onclick</button>
+    <p id="resposta7"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>8. O que significa a sigla HTML?</p>
+    <button onclick="verificar(8, 'a')">a) HyperText Makeup Language</button>
+    <button onclick="verificar(8, 'b')">b) HyperText Markup Language</button>
+    <button onclick="verificar(8, 'c')">c) Hyperlink and Text Markup Language</button>
+    <p id="resposta8"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>9. Para que serve o atributo "href" na tag &lt;a&gt;?</p>
+    <button onclick="verificar(9, 'a')">a) Definir o texto do link</button>
+    <button onclick="verificar(9, 'b')">b) Indicar o endereço do link</button>
+    <button onclick="verificar(9, 'c')">c) Alterar a cor do link</button>
+    <p id="resposta9"></p>
+  </div>
+
+  <div class="pergunta">
+    <p>10. Qual tag cria uma caixa de entrada de texto em formulários HTML?</p>
+    <button onclick="verificar(10, 'a')">a) &lt;form&gt;</button>
+    <button onclick="verificar(10, 'b')">b) &lt;input&gt;</button>
+    <button onclick="verificar(10, 'c')">c) &lt;textbox&gt;</button>
+    <p id="resposta10"></p>
+  </div>
+
+  <script>
+    const respostasCertas = {
+      1: 'a',
+      2: 'c',
+      3: 'c',
+      4: 'b',
+      5: 'b',
+      6: 'c',
+      7: 'c',
+      8: 'b',
+      9: 'b',
+      10: 'b'
+    };
+
+    function verificar(numero, resposta) {
+      const correto = respostasCertas[numero] === resposta;
+      const p = document.getElementById('resposta' + numero);
+      if (correto) {
+        p.innerText = '✅ Resposta correta!';
+        p.className = 'correto';
+      } else {
+        p.innerText = '❌ Resposta incorreta';
+        p.className = 'incorreto';
+      }
+    }
+  </script>
+</body>
+</html>
